@@ -8,7 +8,7 @@ import heapq
 
 
 def solution(N, K):
-    def add_to_heap(heap, time, x):
+    def visit(heap, time, x):
         if x not in visited_time or visited_time[x] > time:
             heapq.heappush(heap, (time, x))
             visited_time[x] = time
@@ -25,17 +25,17 @@ def solution(N, K):
 
         if x > K:
             # walk back
-            add_to_heap(heap, time + 1, x - 1)
+            visit(heap, time + 1, x - 1)
         elif x < K:
             # teleport
-            add_to_heap(heap, time, x * 2)
+            visit(heap, time, x * 2)
 
             # walk front
-            add_to_heap(heap, time + 1, x + 1)
+            visit(heap, time + 1, x + 1)
 
             # walk back
             if x > 0:
-                add_to_heap(heap, time + 1, x - 1)
+                visit(heap, time + 1, x - 1)
 
     return time
 

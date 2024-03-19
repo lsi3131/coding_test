@@ -8,35 +8,34 @@ import heapq
 
 
 def solution(N, K):
+    def add_to_heap(heap, time, x):
+        if x not in visited_time or visited_time[x] > time:
+            heapq.heappush(heap, (time, x))
+            visited_time[x] = time
+
     time = 0
     visited_time = {}
-    remain = abs(K - N)
-    heap = [(0, remain, N)]
-
-    def add_to_heap(heap, time, remain, start):
-        if start not in visited_time or visited_time[start] > time:
-            heapq.heappush(heap, (time, remain, start))
-            visited_time[start] = time
+    heap = [(0, N)]
 
     while heap:
-        time, remain, start = heapq.heappop(heap)
+        time, x = heapq.heappop(heap)
 
-        if start == K:
+        if x == K:
             break
 
-        if start > K:
+        if x > K:
             # walk back
-            add_to_heap(heap, time + 1, remain - 1, start - 1)
-        elif start < K:
+            add_to_heap(heap, time + 1, x - 1)
+        elif x < K:
             # teleport
-            add_to_heap(heap, time, abs(K - (start * 2)), start * 2)
+            add_to_heap(heap, time, x * 2)
 
             # walk front
-            add_to_heap(heap, time + 1, remain - 1, start + 1)
+            add_to_heap(heap, time + 1, x + 1)
 
             # walk back
-            if start > 0:
-                add_to_heap(heap, time + 1, remain - 1, start - 1)
+            if x > 0:
+                add_to_heap(heap, time + 1, x - 1)
 
     return time
 

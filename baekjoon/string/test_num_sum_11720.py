@@ -1,14 +1,9 @@
-import collections
-import mycollections
+'''
+https://www.acmicpc.net/problem/11720
+'''
+
+
 import unittest
-import random
-import string
-import re
-from collections import *
-from mycollections import *
-
-
-# https://www.acmicpc.net/problem/11720
 
 def solution(num_str):
     data_int_list = list(map(int, list(num_str)))

@@ -1,4 +1,6 @@
 '''
+https://www.acmicpc.net/problem/1541
+
 55-50+40
 10+20+30+40
 '''

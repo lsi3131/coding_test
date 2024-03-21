@@ -23,5 +23,4 @@ for i in range(1, n - 1):
             if 0 <= j - nums[i] <= 20:
                 dp[i][j - nums[i]] += dp[i - 1][j]
 
-print(dp)
 print(dp[n - 2][nums[-1]])

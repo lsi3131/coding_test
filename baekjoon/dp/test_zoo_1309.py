@@ -6,13 +6,13 @@ https://www.acmicpc.net/problem/1309
 N = int(input())
 
 
-def lion(N):
-    dict_lion = 2
-    dict_none = 1
+def solution(N):
+    lion = 2
+    empty = 1
     for i in range(2, N + 1):
-        dict_lion, dict_none = dict_lion + 2 * dict_none, dict_lion + dict_none
+        lion, empty = lion + 2 * empty, lion + empty
 
-    return dict_lion + dict_none
+    return lion + empty
 
 
-print(lion(N) % 9901)
+print(solution(N) % 9901)

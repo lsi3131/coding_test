@@ -1,17 +1,31 @@
 '''
 https://www.acmicpc.net/problem/9084
 
+3
+2
+1 2
+1000
+3
+1 5 10
+100
+2
+5 7
+22
+
+1
+2
+2 10
+5
 '''
 
 
 def solution(coins, m):
     dp = [0] * (m + 1)
+    dp[0] = 1
 
     for c in coins:
-        if c <= m:
-            dp[c] += 1
-            for j in range(c + 1, m + 1):
-                dp[j] += dp[j - c]
+        for j in range(c, m + 1):
+            dp[j] += dp[j - c]
 
     return dp[m]
 
